@@ -24,8 +24,8 @@ function triggerError() {
   const clientId = "21292057633-oo0vb0na04qm1rfvm00d8u4i5f2lu7v1.apps.googleusercontent.com";
   const authEndpoint = "https://accounts.google.com/o/oauth2/v2/auth";
 
-  // ★ GitHub Pages のURLから redirect.html を自動生成（推奨）
-  const redirectUri = new URL("redirect.html", window.location.href).toString();
+  // ★ GitHub Pages（あなたの実在パス）に固定
+  const redirectUri = "https://tric777.github.io/.github.io/redirect.html";
 
   const params = new URLSearchParams({
     client_id: clientId,
