@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>OAuthエラー確認</title>
+    <style>
+        body { font-family: sans-serif; text-align: center; padding: 50px; }
+        .success-box { background: #ffebee; border: 2px solid red; padding: 20px; display: none; }
+    </style>
+</head>
+<body>
+
+    <h1>OAuth リダイレクトテスト</h1>
+    
+    <!-- エラーが届いた時だけ表示されるエリア -->
+    <div id="result-box" class="success-box">
+        <h2>🚨 リダイレクトを確認しました！</h2>
+        <p>Googleから戻ってきました。エラー内容：<span id="error-code"></span></p>
+    </div>
+
+    <button onclick="triggerError()">Googleへ飛ばしてエラーで戻る</button>
+
+<script>
+function triggerError() {
+  const clientId = "21292057633-oo0vb0na04qm1rfvm00d8u4i5f2lu7v1.apps.googleusercontent.com";
+  const redirectUri = "http://localhost:8080/index.html";
+
+  // まずエンドポイントを正しく
+  const authEndpoint = "https://accounts.google.com/o/oauth2/v2/auth";
+
+  // 例：openid を付けて OIDC として成立させる（エラーを拾いやすい）
+  // prompt=none で「ユーザーが未ログイン」なら login_required 等で返りやすい
+  const params = new URLSearchParams({
+    client_id: clientId,
+    redirect_uri: "http://localhost:8080/redirect.html",
+    response_type: "code",
+    scope: "openid email",
+    prompt: "none",
+    state: "teststate123"
+  });
+
+  window.location.href = `${authEndpoint}?${params.toString()}`;
+}
+</script>
+</body>
+</html>
+
+
